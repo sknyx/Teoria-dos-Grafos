@@ -16,7 +16,7 @@ void dijkstra(Graph* graph, int ordem, int startnode)
         for(int y=0; y<ordem; y++)
             adjMatrix[x][y] = 0;
 
-    //Varre a lista de adjacencias de cada vertice e adiciona os pesos de cada caminho na respectiva posiÃ§Ã£o da matriz de adjacencias
+    //Varre a lista de adjacencias de cada vertice e adiciona os pesos de cada caminho na respectiva posição da matriz de adjacencias
     for(int x=0; x<6; x++)
         if(graph->head[x] != NULL)
         {
@@ -29,8 +29,8 @@ void dijkstra(Graph* graph, int ordem, int startnode)
             }
         }
 
-    //Imprime "lista" de adjacencias (0 significa que nÃ£o existe caminho entre o vÃ©rtice x ao vÃ©rtice y)
-    printf("\n\n***** Matriz de AdjacÃªncias *****\n");
+    //Imprime "lista" de adjacencias (0 significa que não existe caminho entre o vértice x ao vértice y)
+    printf("\n\n***** Matriz de Adjacências *****\n");
     printf("    ");
     for(int x=0; x<ordem; x++)
         printf(" %c   ", graph->head[x]->info);
@@ -42,8 +42,8 @@ void dijkstra(Graph* graph, int ordem, int startnode)
     }
     printf("\n\n");
 
-    //pred[] - guarda o predecessor de cada nÃ³
-    //count - quantidade de nÃ³s visitados atÃ© o momento
+    //pred[] - guarda o predecessor de cada nó
+    //count - quantidade de nós visitados até o momento
     //cria a matriz de custos
     for(i=0; i<ordem; i++)
         for(j=0; j<ordem; j++)
@@ -63,14 +63,14 @@ void dijkstra(Graph* graph, int ordem, int startnode)
     }
 
     distance[startnode] = 0;
-    visited[startnode] = 1; //define o nÃ³ de inÃ­cio como jÃ¡ visitado
+    visited[startnode] = 1; //define o nó de início como já visitado
     count = 1;
 
     while(count<ordem-1)
     {
         mindistance = INFINITY;
 
-        //nextnode informa a posiÃ§Ã£o do nÃ³ que estÃ¡ a uma distÃ¢ncia mÃ­nima
+        //nextnode informa a posição do nó que está a uma distância mínima
         for(i=0; i<ordem; i++)
             if(distance[i]<mindistance&&!visited[i])
             {
@@ -78,7 +78,7 @@ void dijkstra(Graph* graph, int ordem, int startnode)
                 nextnode = i;
             }
 
-        //Confere se existe um caminho de menos distÃ¢ncia a partir do nÃ³
+        //Confere se existe um caminho de menos distância a partir do nó
         visited[nextnode]=1;
         for(i=0; i<ordem; i++)
             if(!visited[i])
@@ -90,15 +90,15 @@ void dijkstra(Graph* graph, int ordem, int startnode)
         count++;
     }
 
-    //imprime o caminho e distÃ¢ncia atÃ© cada vÃ©rtice
+    //imprime o caminho e distância até cada vértice
     for(i=0; i<ordem; i++)
     {
         if(i!=startnode)
         {
             if(distance[i] != 999)
             {
-                printf("\nDistÃ¢ncia atÃ© '%c' = %d",graph->head[i]->info,distance[i]);
-                printf("\nCaminho de '%c' atÃ© '%c': (%c) ", graph->head[startnode]->info, graph->head[i]->info, graph->head[i]->info);
+                printf("\nDistancia ate '%c' = %d",graph->head[i]->info,distance[i]);
+                printf("\nCaminho de '%c' ate '%c': (%c) ", graph->head[startnode]->info, graph->head[i]->info, graph->head[i]->info);
 
                 j=i;
                 do
@@ -111,9 +111,9 @@ void dijkstra(Graph* graph, int ordem, int startnode)
             }
             else
             {
-                printf("\nDistÃ¢ncia atÃ© '%c' = INFINITA",graph->head[i]->info);
-                printf("\nNÃ£o existe caminho de '%c' atÃ© '%c' :( \n", graph->head[startnode]->info, graph->head[i]->info);
-            }           
+                printf("\nDistancia ate '%c' = INFINITA",graph->head[i]->info);
+                printf("\nNao existe caminho de '%c' ate '%c' :( \n", graph->head[startnode]->info, graph->head[i]->info);
+            }
         }
     }
 }

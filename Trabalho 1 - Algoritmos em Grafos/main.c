@@ -4,19 +4,20 @@
 #include <string.h>
 #include "graph.h"
 
-#define tamanhoMax 8 //quantidade de arestas
+//#define tamanhoMax 8 //quantidade de arestas
 
-int main(void)
+int main(int argc, char *argv[])
 {
     char ch, nVert, cabeca;
-    int newVert, isVertex, isWeight, cont, ordem, indiceVert = 0;
+    int newVert, isVertex, isWeight, cont, ordem, indiceVert = 0, tamanhoMax, n;
     long peso;
 
-    FILE *arq = fopen("file.txt","r");
+    FILE *arq = fopen(argv[1],"r");
 
     if(arq == NULL)
     {
         printf("Erro ao abrir arquivo");
+        return 0;
     }
     else
     {
@@ -24,6 +25,8 @@ int main(void)
         ordem = (int)(nVert - '0'); // quantidade de vertices do grafo - 1a linha do arquivo
     }
 
+    tamanhoMax = ordem*ordem;
+    n = 0;
     Edge edges[tamanhoMax]; //cria a struct de arestas com seus pesos
 
     while( (ch=fgetc(arq))!= EOF )
@@ -43,7 +46,7 @@ int main(void)
                 else if(newVert == 0)
                 {
 
-                    if(isalpha(ch))  //verifica se o elemento Ã© um nÃºmero (peso) ou uma letra (vÃ©rtice)
+                    if(isalpha(ch))  //verifica se o elemento é um número (peso) ou uma letra (vértice)
                     {
                         isVertex = 1;
                         isWeight = 0;
@@ -88,27 +91,38 @@ int main(void)
                         peso = strtol(pesoString,NULL,10);
                         edges[indiceVert].weight = peso;
                         indiceVert++;
+                        n++;
                     }
                 }
-                else if(newVert == 1)  //se for uma nova linha, identifica o primeiro char como o v?rtice principal
+                else if(newVert == 1)  //se for uma nova linha, identifica o primeiro char como o vertice principal
                 {
                     cabeca = ch;
-
-                    newVert = 0; // define que talvez os proximos vertices serÃ£o seus "filhos"
+                    newVert = 0; // define que talvez os proximos vertices serão seus "filhos"
                 }
             }
         }
     }
 
     // calcula qtde de arestas
-    int n = sizeof(edges)/sizeof(edges[0]);
+    //int n = sizeof(edges)/sizeof(edges[0]);
 
     // constroi o grapho a partir das arestas
     Graph* grafo = createGraph(edges, n);
 
-    //DFS(grafo, ordem);
+    if( (strcmp("dfs",argv[2]))==0 || (strcmp("DFS",argv[2]))==0 || (strcmp("Dfs",argv[2]))==0 ){
+        printf("DFS\n");
+        DFS(grafo, ordem);
+    }else if((strcmp("DIJKSTRA",argv[2]))==0 || (strcmp("Dijkstra",argv[2]))==0 || (strcmp("dijkstra",argv[2]))==0){
+        printf("Dijkstra\n");
+        dijkstra(grafo, ordem, 0);
+    }else{
+        printf("Funcao nao encontrada, utilizar: Dfs ou Dijkstra\n");
+    }
+
+
+
     //printGraph(grafo,n);
-    dijkstra(grafo, ordem, 0);
+
 
     printf("\n");
 
