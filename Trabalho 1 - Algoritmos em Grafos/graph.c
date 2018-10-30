@@ -115,7 +115,7 @@ void printGraph(Graph* graph, int n)
     {
         if(graph->head[kk] != NULL)
         {
-            printf("VÃ©rtice[%d]: %c ", kk, graph->head[kk]->info); //graph->head[kk] ? o Vertice
+            printf("Vértice[%d]: %c ", kk, graph->head[kk]->info); //graph->head[kk] ? o Vertice
             Node* tmp = graph->head[kk]->head;
             while(tmp != NULL){//Varre a lista de adjacencias de cada vertice
                 printf("-> (dest): %c (peso):%ld ", tmp->dest, tmp->weight);
