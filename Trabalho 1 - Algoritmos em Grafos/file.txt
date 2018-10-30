@@ -1,0 +1,7 @@
+6
+a a1 b2 f10
+b c3 d2
+c
+d e3
+e c5 f2
+f
