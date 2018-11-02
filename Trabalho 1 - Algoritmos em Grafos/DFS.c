@@ -17,7 +17,6 @@ void DFSaux(int v, Graph* tmp_graph, int ordem)
 
         if(tmp_graph->head[v]->head != NULL)
         {
-
             Node* tmp = tmp_graph->head[v]->head;
             int indiceTemp = busca_noh(tmp->dest, tmp_graph, ordem);
 
@@ -61,6 +60,7 @@ void DFS(Graph* grafo, int ordem)
     {
         tmp_graph->head[i]->visited = 0;
     }
+    printf("\n Estrutura em parênteses: ");
     /* Chama a fun��o auxiliar recursiva  */
     DFSaux(0, tmp_graph, ordem);
 }
