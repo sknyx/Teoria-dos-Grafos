@@ -85,7 +85,8 @@ int main(int argc, char *argv[])
                                 break;
                             }
                         }
-                        if(ch == '\n'){
+                        if(ch == '\n')
+                        {
                             newVert = 1;
                         }
                         peso = strtol(pesoString,NULL,10);
@@ -109,13 +110,33 @@ int main(int argc, char *argv[])
     // constroi o grapho a partir das arestas
     Graph* grafo = createGraph(edges, n);
 
-    if( (strcmp("dfs",argv[2]))==0 || (strcmp("DFS",argv[2]))==0 || (strcmp("Dfs",argv[2]))==0 ){
-        printf("DFS\n");
-        DFS(grafo, ordem);
-    }else if((strcmp("DIJKSTRA",argv[2]))==0 || (strcmp("Dijkstra",argv[2]))==0 || (strcmp("dijkstra",argv[2]))==0){
-        printf("Dijkstra\n");
-        dijkstra(grafo, ordem, 0);
-    }else{
+
+    if( (strcmp("dfs",argv[2]))==0 || (strcmp("DFS",argv[2]))==0 || (strcmp("Dfs",argv[2]))==0 )
+    {
+        if(argc == 3)  //Verifica se tem 2 argumentos fora o nome do programa
+        {
+            printf("DFS\n");
+            DFS(grafo, ordem);
+        }
+        else
+        {
+            printf("Erro de sintaxe, para rodar DFS utilize os argumentos: <Arquivo> <DFS>\n");
+        }
+    }
+    else if((strcmp("DIJKSTRA",argv[2]))==0 || (strcmp("Dijkstra",argv[2]))==0 || (strcmp("dijkstra",argv[2]))==0)
+    {
+        if(argc == 4) //Verifica se tem 3 argumentos fora o nome do programa
+        {
+            printf("Dijkstra saindo de (%s)\n",argv[3]);
+            dijkstra(grafo, ordem, busca_noh(argv[3][0],grafo,ordem));
+        }
+        else
+        {
+            printf("Erro de sintaxe, para rodar Dijkstra utilize os argumentos: <Arquivo> <Dijkstra> <S>\n");
+        }
+    }
+    else
+    {
         printf("Funcao nao encontrada, utilizar: Dfs ou Dijkstra\n");
     }
 

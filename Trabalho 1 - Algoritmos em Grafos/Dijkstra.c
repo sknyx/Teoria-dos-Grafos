@@ -30,7 +30,7 @@ void dijkstra(Graph* graph, int ordem, int startnode)
         }
 
     //Imprime "lista" de adjacencias (0 significa que não existe caminho entre o vértice x ao vértice y)
-    printf("\n\n***** Matriz de Adjacências *****\n");
+    printf("\n\n***** Matriz de Adjacencias *****\n");
     printf("    ");
     for(x=0; x<ordem; x++)
         printf(" %c   ", graph->head[x]->info);
@@ -41,6 +41,11 @@ void dijkstra(Graph* graph, int ordem, int startnode)
             printf("    %d", adjMatrix[x][y]);
     }
     printf("\n\n");
+
+    if(graph->head[startnode]->head == NULL){
+        printf("Nao existe caminho a partir desse vertice.\n");
+        return 0;
+    }
 
     //pred[] - guarda o predecessor de cada nó
     //count - quantidade de nós visitados até o momento
