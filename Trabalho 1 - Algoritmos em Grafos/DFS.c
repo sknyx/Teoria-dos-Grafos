@@ -60,7 +60,7 @@ void DFS(Graph* grafo, int ordem)
     {
         tmp_graph->head[i]->visited = 0;
     }
-    printf("\n Estrutura em parênteses: ");
+    printf("\n Estrutura em parenteses: ");
     /* Chama a fun��o auxiliar recursiva  */
     DFSaux(0, tmp_graph, ordem);
 }
