@@ -1,0 +1,1 @@
+gcc main.c graph.h graph.c DFS.c Dijkstra.c -o T1_G1_carolinarafael
