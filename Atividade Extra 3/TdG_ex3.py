@@ -1,10 +1,5 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[70]:
-
-
 import networkx as nx
+import matplotlib.pyplot as plt
 
 G = nx.Graph()
 
@@ -13,7 +8,7 @@ lastPr = 0      #pega a posição do último parênteses encontrado
 max = 0         #0 até até que se chegue em um ")"
 
 nodecolor = list()    #cores dos vértices
-labels  = {}          #nucleotídeo
+nucleotides  = {}          #nucleotídeo
 
 
 seq = "GGCUUCCUGGUACUUACCACAGUCUGUAUUCUUACACUGACUGUAUAGAAAGAGGAGGC"
@@ -70,10 +65,3 @@ plt.show()
 
 #imagem da saída no formato .png
 plt.savefig("TdG_ex2.png")
-
-
-# In[ ]:
-
-
-
-
