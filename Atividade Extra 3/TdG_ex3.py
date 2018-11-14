@@ -8,7 +8,7 @@ lastPr = 0      #pega a posição do último parênteses encontrado
 max = 0         #0 até até que se chegue em um ")"
 
 nodecolor = list()    #cores dos vértices
-nucleotides  = {}          #nucleotídeo
+nucleotides  = {}     #nucleotídeo
 
 
 seq = "GGCUUCCUGGUACUUACCACAGUCUGUAUUCUUACACUGACUGUAUAGAAAGAGGAGGC"
